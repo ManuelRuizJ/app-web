@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagina Principal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            transition: width 0.3s ease;
+        }
+
+        .container.wide {
+            width: 70%;
+            max-width: 800px;
+        }
+
+        input {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .error {
+            color: red;
+            margin-top: 10px;
+        }
+
+        #welcomePage {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container" id="mainContainer">
+        <div id="loginPage">
+            <h2>Iniciar Sesión</h2>
+            <form id="loginForm">
+                <input type="text" id="username" placeholder="Nombre de usuario" required>
+                <input type="password" id="password" placeholder="Contraseña" required>
+                <button type="submit">Iniciar Sesión</button>
+            </form>
+            <p id="errorMessage" class="error"></p>
+        </div>
+        <div id="welcomePage">
+            <h2>Bienvenido</h2>
+            <p id="welcomeMessage"></p>
+            <p>Aquí irá el contenido de la api Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur
+                officiis omnis accusamus cumque doloribus? Officia culpa nam vitae ipsa dolore assumenda animi, rem
+                explicabo quos impedit, veniam suscipit ducimus corporis!
+            </p>
+            <button id="logoutButton">Cerrar Sesión</button>
+        </div>
+    </div>
+
+    <script>
+        const mainContainer = document.getElementById('mainContainer');
+        const loginPage = document.getElementById('loginPage');
+        const welcomePage = document.getElementById('welcomePage');
+        const loginForm = document.getElementById('loginForm');
+        const errorMessage = document.getElementById('errorMessage');
+        const welcomeMessage = document.getElementById('welcomeMessage');
+        const logoutButton = document.getElementById('logoutButton');
+
+        loginForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            if (username === 'usuario' && password === 'password') {
+                loginPage.style.display = 'none';
+                welcomePage.style.display = 'block';
+                welcomeMessage.textContent = `Hola, ${username}!`;
+                mainContainer.classList.add('wide');
+            } else {
+                errorMessage.textContent = 'Usuario o contraseña incorrectos';
+            }
+        });
+
+        logoutButton.addEventListener('click', function () {
+            welcomePage.style.display = 'none';
+            loginPage.style.display = 'block';
+            loginForm.reset();
+            errorMessage.textContent = '';
+            mainContainer.classList.remove('wide');
+        });
+    </script>
+</body>
+
+</html>
