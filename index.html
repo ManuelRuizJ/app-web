@@ -9,6 +9,7 @@
         body {
             font-family: Arial, sans-serif;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
@@ -58,6 +59,20 @@
         #welcomePage {
             display: none;
         }
+
+        footer {
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+
+        footer p {
+            margin: 0;
+        }
     </style>
 </head>
 
@@ -82,6 +97,10 @@
             <button id="logoutButton">Cerrar Sesión</button>
         </div>
     </div>
+
+    <footer>
+        <p>&copy; 2024 Mi Aplicación Web. Todos los derechos reservados.</p>
+    </footer>
 
     <script>
         const mainContainer = document.getElementById('mainContainer');
@@ -118,3 +137,4 @@
 </body>
 
 </html>
+
