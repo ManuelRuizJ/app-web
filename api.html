@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Task Api</h1>
+    <div id="data-container">
+
+    </div>
+
+    <script>
+        const apiURL = "https://66f4acc177b5e889709a24d7.mockapi.io/Task"
+        const dataContainer = document.getElementById("data-container");
+
+        function getData(){
+            fetch(apiURL).then(response => {
+                if (!response.ok){
+                    throw new Error('Problema de red')
+                }
+                return response.json();
+            }).then(data => {
+                console.log(data);
+                const contenido = data.map(tarea => `
+                <div>
+                    <h4>${tarea.name}</h4>
+                </div>
+                `).join('');
+                dataContainer.innerHTML = contenido;
+                    
+            }).catch(error => {
+                console.error('Fetch error'. error);
+            })
+        }
+        getData();
+    </script>
+</body>
+</html>
